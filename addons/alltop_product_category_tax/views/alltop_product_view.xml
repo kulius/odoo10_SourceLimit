@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="alltop_product_category_view_inherit" model="ir.ui.view">
+            <field name="name">alltop_product_category_view_inherit</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='first']" position="before">
+                    <group name="tax"  string="分類用銷售稅">
+                        <field name="product_tax_batch" widget="many2many_tags"/>
+                    </group>
+                </xpath>
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button name="set_all_category_product" string="寫入稅額"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-check"
+                        />
+                </xpath>
+            </field>
+        </record>
+
+         <!--<record id="alltop_product_category_view_inherit2" model="ir.ui.view">-->
+            <!--<field name="name">alltop_product_category_view_inherit2</field>-->
+            <!--<field name="model">product.category</field>-->
+            <!--<field name="inherit_id" ref="account.view_category_property_form"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//field[@name='property_account_income_categ_id']" position="after">-->
+                    <!--<field name="product_tax_batch" widget="many2many_tags"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+    </data>
+</odoo>

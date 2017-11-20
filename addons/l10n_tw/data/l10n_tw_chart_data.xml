@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 2016/05 IFRS 科目模版 -->
+    <record id="tw_1119-00-00" model="account.account.template">
+        <field name="name">銀行間轉賬</field>
+        <field name="code">1119-00-00</field>
+        <field name="reconcile" eval="True"/>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    </record>
+
+    <!-- Chart template -->
+    <record id="l10n_tw_chart_template" model="account.chart.template">
+        <field name="name">台灣會計科目表</field>
+        <field name="code_digits" eval="10"/>
+        <field name="currency_id" ref="base.TWD"/>
+        <field name="cash_account_code_prefix">1101-00-00</field>
+        <field name="bank_account_code_prefix">1102-00-00</field>
+        <field name="transfer_account_id" ref="tw_1119-00-00"/>
+    </record>
+    <record id="tw_1119-00-00" model="account.account.template">
+        <field name="chart_template_id" ref="l10n_tw_chart_template"/>
+    </record>
+    <!-- Account Tags -->
+    <record id="tag1" model="account.account.tag">
+        <field name="name">銷項稅額5%</field>
+        <field name="applicability">taxes</field>
+    </record>
+    <record id="tag2" model="account.account.tag">
+        <field name="name">進項稅額5%</field>
+        <field name="applicability">taxes</field>
+    </record>
+</odoo>

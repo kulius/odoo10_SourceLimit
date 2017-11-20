@@ -1,0 +1,123 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="alltop_deletedemodata.list">
+      <field name="name">alltop_deletedemodata list</field>
+      <field name="model">alltop_deletedemodata.alltop_deletedemodata</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="alltop_deletedemodata.action_window">
+      <field name="name">alltop_deletedemodata window</field>
+      <field name="res_model">alltop_deletedemodata.alltop_deletedemodata</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="alltop_deletedemodata_action_server">
+      <field name="name">alltop_deletedemodata server</field>
+      <field name="model_id" ref="model_alltop_deletedemodata"/>
+      <field name="code">
+       to_removes = [
+    # 清除采购单据
+    ['purchase.order.line',],
+    ['purchase.order',],
+
+    # 清除销售单据
+    ['sale.order.line',],
+    ['sale.order',],
+    ['pos.order.line',],
+    ['pos.order',],
+
+    # 清除生产单据
+    ['mrp.production.workcenter.line',],
+    ['mrp.production',],
+    ['mrp.production.product.line',],
+
+    # 清除库存单据
+    ['procurement.order',],
+    ['stock.quant',],
+    ['stock.move',],
+    ['stock.pack.operation',],
+    ['stock.picking',],
+    ['stock.inventory.line',],
+    ['stock.inventory',],
+    ['stock.quant.package',],
+    ['stock.quant.move.rel',],
+    ['stock.production.lot',],
+    ['stock.fixed.putaway.strat',],
+
+    # 清除财务单据
+    ['account.voucher.line',],
+    ['account.voucher',],
+    ['account.bank.statement',],
+    ['account.bank.statement.line',],
+    ['account.payment',],
+    ['account.analytic.line',],
+    ['account.invoice.line',],
+    ['account.invoice',],
+    ['account.partial.reconcile',],
+    ['account.move.line',],
+    ['account.move',],
+
+    # 清除其他数据
+    ['mail.message',],
+
+    # 清除課程
+    ['service.class'],
+        ['service.checkin'],
+        ['service.checkin.line'],
+]
+
+def remove_data(cr):
+    try:
+        for line in to_removes :
+            obj_name = line[0]
+            obj = env.get(obj_name, False)
+            if obj != False and obj._table_exist():
+                sql = "delete from %s" % obj._table
+                cr.execute( sql)
+
+        #清除工作流
+        cr.execute("delete from wkf_workitem")
+        cr.execute("delete from wkf_instance")
+    except Exception, e:
+        raise Warning(e)
+
+    return True
+
+remove_data(cr,)
+
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+
+
+    <!-- menu categories -->
+
+    <menuitem name="先傑" id="alltop_categ" parent="base.menu_administration"/>
+    <!--<menuitem name="Menu 2" id="alltop_deletedemodata.menu_2" parent="alltop_deletedemodata.menu_root"/>-->
+
+    <!-- actions -->
+
+    <menuitem name="刪除測試資料" id="alltop_delete" parent="alltop_categ"
+              action="alltop_deletedemodata_action_server"/>
+
+
+  </data>
+</odoo>

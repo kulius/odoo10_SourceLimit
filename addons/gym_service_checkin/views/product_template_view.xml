@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_category_form_view_inherit_gym" model="ir.ui.view">
+            <field name="name">gym.product.category.form.inherit</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="account.view_category_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_account_income_categ_id']" position="after">
+                    <field name="get_in_account_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sale_order_form_inherit_gym" model="ir.ui.view">
+             <field name="name">sale.order.gym</field>
+             <field name="model">sale.order</field>
+             <field name="inherit_id" ref="sale.view_order_form" />
+             <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="copy_user_id"/>
+                    <field name="copy_company_id"/>
+                </xpath>
+                 <xpath expr="//div[@class='oe_button_box']" position="inside">
+                            <button class="oe_stat_button" type="object" name="open_class_list" icon="fa-list-ul">
+                            <field string="訂單課程" name="class_len" widget="statinfo"/>
+                            </button>
+                </xpath>
+                 <xpath expr="//group[@name='technical']" position="after">
+                     <group string="健身房合約資訊">
+                        <field name="contract_sdate"/>
+                        <field name="contract_edate"/>
+                         <field name="Identity_type"/>
+                         <field name="Introducer"/>
+                         <field name="contract_memo"/>
+                     </group>
+                </xpath>
+
+
+             </field>
+        </record>
+
+        <!--<record id="gym_view_sale_advance_payment_inv" model="ir.ui.view">-->
+            <!--<field name="name">gym_view_sale_advance_payment_inv</field>-->
+            <!--<field name="model">sale.advance.payment.inv</field>-->
+            <!--<field name="inherit_id" ref="sale.view_sale_advance_payment_inv"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//field[@name='name']" position="">-->
+
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+    </data>
+</odoo>

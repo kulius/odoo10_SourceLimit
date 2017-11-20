@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="gym_root" name="健身房" sequence=""/>
+        <menuitem id="gym_servicecheckin_category" name="課程簽到與執行" parent="gym_root" sequence="1"/>
+        <menuitem id="gym_servicecheckin_action"
+                  name="學員簽到"
+                  parent="gym_servicecheckin_category"
+                  action="service_checkin_view_action"
+                  sequence="1"/>
+        <menuitem id="gym_order_list_category" name="學員課程清單" parent="gym_root" sequence="1"/>
+        <menuitem id="gym_order_list_action"
+                  name="學員課程清單"
+                  parent="gym_order_list_category"
+                  action="service_class_view_action"
+                  sequence="2"/>
+        <menuitem id="gym_order_list2_action"
+                  name="訂單課程簽到次數表"
+                  parent="gym_order_list_category"
+                  action="service_class_view_graph_action"
+                  sequence="3"/>
+        <menuitem id="gym_order_list3_action"
+                  name="教練課程簽到次數表"
+                  parent="gym_order_list_category"
+                  action="service_checkin_list_view_graph_action"
+                  sequence="4"/>
+    </data>
+</odoo>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="service_checkin_view_form" model="ir.ui.view">
+            <field name="name">service_checkin_view_form</field>
+            <field name="model">service.checkin</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="checkuin_access" string="產生傳票" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="1,2"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="open_account_list" icon="fa-list-ul">
+                            <field string="會計憑證" name="checkin_account_len" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group col="4">
+                            <field name="checkin_date"/>
+                            <field name="checkin_member" attrs="{'readonly': [('state', '=', 2)]}"/>
+                            <!--<field name="checkin_pack"/>-->
+                            <!--<field name="checkin_account"/>-->
+                        </group>
+                        <field name="checkin_list" attrs="{'readonly': [('state', '=', 2)]}">
+                            <tree editable="bottom">
+                                <field name="checkin_partner" options="{'no_create': True}"/>
+                                <field name="checkin_order2" options="{'no_create': True}"/>
+                                <field name="checkin_couch"/>
+                                <field name="checkin_rest_amount"/>
+                                <field name="checkin_amount"/>
+                                <field name="create_date" string="簽到時間" readonly="1"/>
+                                <field name="checkin_member" invisible="1"/>
+                                <field name="checkin_parent_date" invisible="1"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="service_checkin_view_tree" model="ir.ui.view">
+            <field name="name">service_checkin_view_tree</field>
+            <field name="model">service.checkin</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="state"/>
+                    <field name="name"/>
+                    <field name="checkin_date"/>
+                    <field name="checkin_member"/>
+                    <field name="checkin_list" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="service_checkin_view_search" model="ir.ui.view">
+            <field name="name">service_checkin_view_search</field>
+            <field name="model">service.checkin</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="未產生會計頻證的簽到" domain="[('state','=',1)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="service_checkin_view_action" model="ir.actions.act_window">
+            <field name="name">學員簽到</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.checkin</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+
+
+        <record id="product_template_form_view_checkin" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.checkin</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='purchase_ok']" position="after">
+                    <field name="check_in_ok"/>
+                    <label for="check_in_ok"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!--<record id="view_sales_order_line_filter_inherit" model="ir.ui.view">-->
+            <!--<field name="name">sale.order.line</field>-->
+            <!--<field name="model">sale.order.line</field>-->
+            <!--<field name="inherit_id" ref="sale.view_sales_order_line_filter"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//field[@name='order_id']" position="before">-->
+                    <!--&lt;!&ndash; Add your fields or attributes here &ndash;&gt;-->
+                    <!--<field name="order_partner_id"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+    </data>
+</odoo>

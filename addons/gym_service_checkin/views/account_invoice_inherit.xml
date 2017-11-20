@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="gym_account_invoice_form" model="ir.ui.view">
+            <field name="name">gym_account_invoice_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="attributes">
+                    <attribute name="string">銷貨退回</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="taiwan_invoice"/>
+                    <field name="invoice_type"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="gym_account_invoice_tree" model="ir.ui.view">
+            <field name="name">gym_account_invoice_tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_invoice']" position="after">
+                    <field name="taiwan_invoice"/>
+                    <field name="invoice_type"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="gym_account_invoice_search" model="ir.ui.view">
+            <field name="name">gym_account_invoice_search</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='number']" position="before">
+                    <field name="taiwan_invoice"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!--發票清單-->
+        <record id="gym_invoice_401_pivot" model="ir.ui.view">
+            <field name="name">401報稅</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <pivot string="已簽到次數">
+                    <!--<field name="checin_class_product" type="row"/>-->
+                    <!--<field name="checkin_parent_date" interval="month" type="measure"/>-->
+                    <!--<field name="checkin_partner" type="row"/>-->
+                    <!--<field name="checkin_couch" type="row"/>-->
+                    <!--&lt;!&ndash;<field name="checin_class_amount" type="measure"/>&ndash;&gt;-->
+                    <!--<field name="checkin_amount" type="measure"/>-->
+
+                    <field name="date" type="col"/>
+                     <field name="invoice_type" type="row"/>
+                    <field name="taiwan_invoice" type="row"/>
+
+                    <field name="amount_total" type="measure"/>
+
+                </pivot>
+            </field>
+        </record>
+
+         <record id="gym_invoice_401_action" model="ir.actions.act_window">
+            <field name="name">401報稅</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_mode">pivot</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="gym_invoice" name="401報稅" action="gym_invoice_401_action" sequence="20" parent="account.menu_finance_reports"/>
+    </data>
+</odoo>

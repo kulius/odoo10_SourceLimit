@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_alltop_deletedemodata_alltop_deletedemodata,alltop_deletedemodata.alltop_deletedemodata,model_alltop_deletedemodata_alltop_deletedemodata,,1,0,0,0

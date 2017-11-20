@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="service_class_view_form" model="ir.ui.view">
+            <field name="name">購賣課程form</field>
+            <field name="model">service.class</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="update_product_price" string="更新單價" type="object"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="create_date" string="購買時間"/>
+                            <field name="name"/>
+                            <field name="class_order_id"/>
+                            <field name="class_product_id"/>
+                            <field name="class_product_price"/>
+                            <field name="class_company_name"/>
+                            <field name="class_amount"/>
+                            <field name="class_product_price"/>
+                            <field name="class_amount_price"/>
+                            <field name="class_checkin_times"/>
+                            <field name="class_checkin_price"/>
+                            <field name="class_checkin_rest"/>
+                            <field name="class_checkin_rest_prcie"/>
+                            <field name="class_checkin_list">
+                                <tree>
+                                    <field name="checkin_parent_date"/>
+                                    <field name="checkin_couch"/>
+                                    <field name="checkin_amount"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="service_class_view_tree" model="ir.ui.view">
+            <field name="name">購賣課程tree</field>
+            <field name="model">service.class</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="create_date" string="購買時間"/>
+                    <field name="name"/>
+                    <field name="class_order_id"/>
+                    <field name="class_product_id"/>
+                    <field name="class_company_name"/>
+                    <field name="class_amount"/>
+                    <field name="class_amount_price"/>
+                    <field name="class_checkin_times"/>
+                    <field name="class_checkin_price"/>
+                    <field name="class_checkin_rest"/>
+                    <field name="class_checkin_rest_prcie"/>
+                    <!--<field name="class_member" widget="many2many_tags"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="service_class_view_graph" model="ir.ui.view">
+            <field name="name">簽到次數表</field>
+            <field name="model">service.class</field>
+            <field name="arch" type="xml">
+                <pivot string="已簽到次數">
+                    <field name="class_product_id" type="row"/>
+
+                    <field name="name" type="row"/>
+                    <field name="class_amount" type="measure"/>
+                    <field name="class_checkin_times" type="measure"/>
+                    <field name="class_checkin_rest" type="measure"/>
+                    <!--service.checkin.line用-->
+                    <!--<field name="checin_class_product" type="row"/>-->
+                    <!--<field name="checin_class_partner" type="row"/>-->
+                    <!--<field name="checin_class_amount" type="measure"/>-->
+                    <!--<field name="checin_class_checkin_times" type="measure"/>-->
+                    <!--<field name="checin_class_checkin_rest" type="measure"/>-->
+                </pivot>
+            </field>
+        </record>
+
+        <record id="service_class_view_graph_action" model="ir.actions.act_window">
+            <field name="name">簽到次數表</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.class</field>
+            <field name="view_mode">pivot</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+        <record id="service_class_view_search" model="ir.ui.view">
+            <field name="name">service_class_view_search</field>
+            <field name="model">service.class</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <filter name="group_customer" string="客戶" context="{'group_by':'name'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="service_class_view_action" model="ir.actions.act_window">
+            <field name="name">購賣課程明細</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.class</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

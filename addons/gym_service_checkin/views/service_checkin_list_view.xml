@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="service_checkin_list_view_graph" model="ir.ui.view">
+            <field name="name">教練課程簽到次數表</field>
+            <field name="model">service.checkin.line</field>
+            <field name="arch" type="xml">
+                <pivot string="已簽到次數">
+                    <!--<field name="class_product_id" type="row"/>-->
+                    <!--<field name="name" type="row"/>-->
+                    <!--<field name="class_amount" type="measure"/>-->
+                    <!--<field name="class_checkin_times" type="measure"/>-->
+                    <!--<field name="class_checkin_rest" type="measure"/>-->
+                    <!--service.checkin.line用-->
+                    <field name="checin_class_product" type="row"/>
+                    <field name="checkin_parent_date" interval="day" type="row"/>
+                    <field name="checkin_partner" type="row"/>
+                    <field name="checkin_couch" type="row"/>
+                    <!--<field name="checin_class_amount" type="measure"/>-->
+                    <field name="checkin_amount" type="measure"/>
+
+                </pivot>
+            </field>
+        </record>
+
+         <record id="service_checkin_list_view_graph_action" model="ir.actions.act_window">
+            <field name="name">教練課程簽到次數表</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.checkin.line</field>
+            <field name="view_mode">pivot</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

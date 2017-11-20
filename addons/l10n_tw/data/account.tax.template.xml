@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tax template for sale and purchase -->
+    <record id="l10n_tw_sale_tax_template" model="account.tax.template">
+        <field name="chart_template_id" ref="l10n_tw_chart_template"/>
+        <field name="name">銷項稅 5%</field>
+        <field name="amount">5</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount_type">percent</field>
+        <field name="account_id" ref="tw_2214-00-00"/>
+        <field name="refund_account_id" ref="tw_2214-00-00"/>
+    </record>
+
+    <record id="l10n_tw_purchase_tax_template" model="account.tax.template">
+        <field name="chart_template_id" ref="l10n_tw_chart_template"/>
+        <field name="name">進項稅 5%</field>
+        <field name="amount">5</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="amount_type">percent</field>
+        <field name="account_id" ref="tw_1423-00-00"/>
+        <field name="refund_account_id" ref="tw_1423-00-00"/>
+    </record>
+
+</odoo>

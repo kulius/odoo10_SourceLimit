@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <!--<record id="order_list_view_graph" model="ir.ui.view">-->
+            <!--<field name="name">預定業績</field>-->
+            <!--<field name="model">sale.report</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<pivot string="預定業績">-->
+                    <!--<field name="product_id" type="row"/>-->
+                    <!--<field name="partner_id" type="row"/>-->
+                    <!--<field name="product_uom_qty" string="已訂購課程數量" type="measure"/>-->
+                    <!--&lt;!&ndash;<field name="checkin_times" type="measure"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="performance" type="measure"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="profit" type="measure"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<field name="receipt" type="measure"/>&ndash;&gt;-->
+                <!--</pivot>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="order_list_view_search" model="ir.ui.view">-->
+            <!--<field name="name">order_list_view_search</field>-->
+            <!--<field name="model">sale.report</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search>-->
+                    <!--<filter string="課程" name="service_filter" domain="[('product_id.type','=','service')]"/>-->
+                <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="order_list_view_action" model="ir.actions.act_window">-->
+            <!--<field name="name">學員課程清單</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">sale.report</field>-->
+            <!--<field name="view_mode">pivot</field>-->
+            <!--<field name="view_id" ref="order_list_view_graph"/>-->
+            <!--<field name="search_view_id" ref="order_list_view_search"/>-->
+            <!--<field name="context">{'search_default_service_filter':1}</field>-->
+            <!--<field name="help" type="html">-->
+              <!--<p class="oe_view_nocontent_create">-->
+                <!--&lt;!&ndash; Add Text Here &ndash;&gt;-->
+              <!--</p><p>-->
+                <!--&lt;!&ndash; More details about what a user can do with this object will be OK &ndash;&gt;-->
+              <!--</p>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+          <record id="order_list2_view_graph" model="ir.ui.view">
+            <field name="name">簽到次數表</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <pivot string="預定業績">
+                    <field name="product_id" type="row"/>
+                    <field name="order_partner_id" type="row"/>
+                    <!--<field name="product_uom_qty" string="已訂購課程數量" type="measure"/>-->
+                     <field name="product_uom_qty" type="measure"/>
+                    <field name="checkin_times" type="measure"/>
+                    <field name="checkin_rest" type="measure"/>
+                    <!--<field name="profit" type="measure"/>-->
+                    <!--<field name="receipt" type="measure"/>-->
+                </pivot>
+            </field>
+        </record>
+
+        <record id="order_list2_view_search" model="ir.ui.view">
+            <field name="name">order_list_view_search</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="課程" name="service_filter" domain="[('product_id.type','=','service')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="order_list2_view_action" model="ir.actions.act_window">
+            <field name="name">學員課程清單</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="order_list2_view_graph"/>
+            <field name="search_view_id" ref="order_list2_view_search"/>
+            <field name="context">{'search_default_service_filter':1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
